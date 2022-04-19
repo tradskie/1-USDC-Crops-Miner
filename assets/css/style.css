@@ -6,7 +6,7 @@
     var(--primary) 0%,
     rgb(60, 40, 80) 100%
   );
-  --token: #2962ff;
+  --token: #f4c444;
   --box-gradient: linear-gradient(
     rgba(249, 251, 252, 0.9) 0%,
     rgba(255, 255, 255, 0.9) 51.04%,
@@ -41,7 +41,7 @@ body {
   background-color: rgb(33, 36, 41) !important;
   /*  background: var(--radial-gradient); */
   color: #fff;
-  background: url("../img/crobfarmerbg.jpg");
+  background: url("../img/cropsfarmer2.PNG");
   background-repeat: no-repeat !important;
   background-size: cover;
   background-attachment: fixed;
@@ -181,7 +181,7 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
   padding: 0;
-  background: #2962ff;
+  background: #624a09;
 }
 #header.header-scrolled,
 #header.header-inner-pages {
@@ -199,7 +199,7 @@ h6 {
   color: #fff;
 }
 #header .logo a span {
-  color: #2e9ace;
+  color: var(--token);
 }
 
 #header .logo img {
@@ -293,6 +293,24 @@ h6 {
 .navbar .mine:hover {
   color: #000;
   background-color: var(--token);
+}
+
+.navbar .bnb-miner {
+  width: auto;
+  background-color: #877b12;
+  border-radius: 12px;
+  padding: 10px;
+  font-weight: bold;
+  border: 2px solid #000;
+  box-shadow: 0px 5px 20px rgb(255 255 255 / 30%),
+    inset 0px 0px 0px rgb(0 0 0 / 32%);
+  max-width: 200px;
+  margin: 20px auto 20px auto;
+}
+
+#navbar .bnb-miner:hover {
+  color: #fff;
+  background-color: #e0cd1f;
 }
 
 .other-miner {
@@ -609,12 +627,12 @@ h6 {
   overflow: hidden;
   background: linear-gradient(
     to right,
-    #2962ff 20%,
-    #3b5fc2 40%,
-    #35519c 50%,
-    #4b619c 55%,
-    #3d4d7a 70%,
-    #2962ff 100%
+    #eab50c 20%,
+    #e6cc77 40%,
+    #eab50c 50%,
+    #ecd08c 55%,
+    #ba9a37 70%,
+    #eab50c 100%
   );
   background-size: 200% auto;
   animation: shine 3s linear infinite;
@@ -632,13 +650,13 @@ fff .content-box {
 }
 
 #main .container {
-  background: #2962ff;
+  background: #624b08;
   max-width: 1200px;
   margin: 0 auto;
-  border-radius: 18px;
+  border-radius: 5px;
   border-style: solid;
-  border-width: 2px;
-  border-color: #ffffff;
+  border-width: 7px;
+  border-color: #d4a920;
 }
 
 #main .content-box {
@@ -673,7 +691,7 @@ fff .content-box {
 #lottery .info-container {
   color: rgba(0, 0, 0, 0.8);
   background: #fafffe;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid #000;
   border-radius: 10px;
   width: auto;
   padding: 20px;
@@ -721,7 +739,7 @@ fff .content-box {
   color: white;
   background: rgb(39 34 24);
   backdrop-filter: blur(8px);
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid #000000;
   border-radius: 18px;
   width: auto;
   min-width: 215px;
@@ -1174,7 +1192,7 @@ section {
   color: white;
   background: rgb(39 34 24);
   backdrop-filter: blur(8px);
-  border: 2px solid rgb(255, 255, 255);
+  border: 2px solid #000000;
   border-radius: 18px;
   height: 100%;
   font-size: 16px;
@@ -1499,7 +1517,7 @@ section {
   # Footer
   --------------------------------------------------------------*/
 #footer {
-  background: #2962ff;
+  background: #624a09;
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
@@ -1702,8 +1720,8 @@ section {
   height: 50px;
   border: none;
   outline: none;
-  color: rgb(255, 255, 255);
-  background: rgb(39 34 24);
+  color: rgb(0, 0, 0);
+  background: #f4c444;
   cursor: pointer;
   position: relative;
   z-index: 0;
@@ -1744,7 +1762,7 @@ section {
 }
 
 .glow-on-hover:active {
-  color: rgb(255, 255, 255);
+  color: #000;
 }
 
 .glow-on-hover:active:after {
@@ -1761,7 +1779,7 @@ section {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #2962ff;
+  /* background: #f4c444; */
   left: 0;
   top: 0;
   border-radius: 10px;
