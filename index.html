@@ -93,22 +93,24 @@
         <ul>
 		<a class=" scrollto bnb-miner glow-on-hover" href="" target="_blank">BNB Crops Farmer Soon!</a>
 	        <li> 
-            <a class="nav-link" href="https://pancakeswap.finance/swap?outputCurrency=0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56" target="_blank"><img class="nav-logo" id="logo" alt="" src="assets/img/pancakeswap.svg"></img>Buy BUSD</a>
+            <a class="nav-link" href="https://pancakeswap.finance/swap?outputCurrency=0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56" target="_blank"><img class="nav-logo" id="logo" alt="" src="assets/img/pancakeswap.svg"></img><strong>Buy BUSD</strong></a>
           </li>	 
 	  <!--<li>
 	    <a class="nav-link scrollto" href="#faq">FAQs</a>
 	  </li>	-->
 	         <li> 
-            <a class="nav-link scrollto" href="#faq" target="_blank"><img class="nav-logo" id="logo" alt="" src="assets/img/paper.svg"></img>Project FAQs</a>
+            <a class="nav-link scrollto" href="#faq" target="_blank"><img class="nav-logo" id="logo" alt="" src="assets/img/faqs.png"></img><strong>FAQs</strong></a>
           </li>
           <li>
-	           <a class="nav-link" href="https://testnet.bscscan.com/address/0xa4be7b9f36495d07a1b1753c38cabc286af53757#code" target="_blank"><img class="nav-logo" id="logo" alt="" src="assets/img/bscscan-logo-light-circle.svg"></img>Contract</a>
-          </li>
+	           <!--<a class="nav-link" href="https://testnet.bscscan.com/address/0xa4be7b9f36495d07a1b1753c38cabc286af53757#code" target="_blank"><img class="nav-logo" id="logo" alt="" src="assets/img/bscscan-logo-light-circle.svg"></img><strong>Contract</strong></a>-->
+               <a class="nav-link" href="https://bscscan.com/address/0x8be8881C641Dc5A40845253Ee3eD04955eDFe96D#code" target="_blank"><img class="nav-logo" id="logo" alt="" src="assets/img/bscscan-logo-light-circle.svg"></img>Contract</a>
+             
+	</li>
 	        <li>
-            <a class="nav-link" href="https://twitter.com/BUSDCropFarmer" target="_blank"><img class="nav-logo" id="twitter" alt="" src="assets/img/twitter.svg"></img>Twitter</a>
+            <a class="nav-link" href="https://twitter.com/BUSDCropFarmer" target="_blank"><img class="nav-logo" id="twitter" alt="" src="assets/img/twitter.svg"></img><strong>Twitter</strong></a>
           </li> 
            <li>
-            <a class="nav-link" href="https://t.me/busdcropfarmer" target="_blank"><img class="nav-logo" id="telegram" alt="" src="assets/img/telegram.svg"></img>Telegram</a>
+            <a class="nav-link" href="https://t.me/busdcropfarmer" target="_blank"><img class="nav-logo" id="telegram" alt="" src="assets/img/telegram.svg"></img><strong>Telegram</strong></a>
           </li>
           <li>
             <a class="nav-link" >
@@ -131,12 +133,12 @@
       <div class="content-box" data-aos="zoom-in">
         <div class="row">
           <div class="col-lg-6">
-            <br>
-            <br>		  
+            <br>			
             <!--<h1><span class="busd">BUSD - Crops Farmer</span>!</h1>-->
-	    <h4><i class="bi-cloud-sun"></i>
+	    <h3 style="font-weight: bold; font-family: cursive;">
+		<i class="bi-cloud-sun"></i>
 	    <span class="busd">Hire, Grow, Harvest!</span>
-	    </h4>	  
+	    </h3>	  
             <!--<h4>
 	    <i class="bi-cloud-sun"></i>
             <span class="busd">Hire, Grow, Harvest!</span>
@@ -151,6 +153,10 @@
           </h4>
           <h4>
             <i class="bi-check2-square bnb-icon"></i>
+            <span>5% Development/Marketing Fee</span>
+          </h4>		  
+          <h4>
+            <i class="bi-check2-square bnb-icon"></i>
             <span id="daily-compound">2.5% Hire Bonus</span>
           </h4>
           <h4>
@@ -163,12 +169,12 @@
           </h4>
           <h4>
             <i class="bi-check2-square bnb-icon"></i>
-            <span><span id="no-tax-compound-count">5</span> Times Mandatory Compound Feature.</span>
-          </h4>
-	  <h4>
-            <i class="bi bi-clock bnb-icon"></i>
-            <span><span id="start-timer">00:00:00:00</span> to launch!</span>
-          </h4>	    
+            <span><span id="cut-off-step">48</span> Hours Rewards Accumulation Cut-Off</span>
+          </h4>		  
+          <h4>
+            <i class="bi-check2-square bnb-icon"></i>
+            <span><span id="no-tax-compound-count">5</span> Times Mandatory Compound Feature</span>
+          </h4>    
           <h4>
           </div>
           <div class="col-lg-6"><br>
@@ -176,9 +182,9 @@
               <div class="stat">
                 <div class="header">
 				<br>
-                  Total<span class="busd">BUSD</span>Staked
+                  Total<span class="busd">BUSD</span>Locked
                 </div>
-                <strong class="number" id="total-staked">-</strong>
+                <strong class="number" id="contract-balance">-</strong>
               </div>
               <!--
 			  <div class="stat">
@@ -209,7 +215,6 @@
         </div>
         <div class="row justify-content-center mt-2">
           <div class="col-xl-12 disclaimer">
-            <i class="ri-alert-line"></i>
             <span>
               <strong>Important Note!</strong> 
 		    <p>
@@ -226,8 +231,7 @@
 		    <p>
 		    The best strategy that the team can recommend is to re-hire/compound for 6 days and harvest 1 day a week. 
 		    This will increase the users investment at the same time increasing the daily yield earnings. This strategy has already been tried and tested by several project and is proven effective.
-		    <p>
-		    <strong>High Risk!</strong> Funds that are used to initially hire farmers (including re-hire) cannot be withdrawn, 
+		    <p></i><strong style="color: red;">High Risk!</strong> Funds that are used to initially hire farmers (including re-hire) cannot be withdrawn, 
 		    however your farmers will indefinitely work and find grow crops for you. Please use the application at your own risk. 
             </span>
           </div>
@@ -243,7 +247,7 @@
       <div class="container main" data-aos="fade-up">
         <div class="content-box">
 	<!--<h4 class="text-start busd" style="letter-spacing: 2px; margin-left: 5px;font-size: 2rem;"><u>Farmer Dashboard</u></h4>-->
-		<h4 style="color: #fff; font-weight: bold; font-family: cursive; justify-content: center; letter-spacing: 2px; margin-left: 5px;font-size: 2rem;" ><div class="busd"><u>Farmer Dashboard</u></div></h4>
+		<h4 style="color: #fff; font-weight: bold; font-family: cursive; justify-content: center; letter-spacing: 2px; margin-left: 5px;font-size: 2rem;" ><div class="busd">Farmer Dashboard</div></h4>
           <div class="row stats-row-container">
             <div class="col-lg-2 stat">
               <div class="header">
@@ -301,7 +305,7 @@
                         Hiring Example
                       </strong>
                       <div>
-                        <div>500<span class="busd">BUSD</span>gets you:</div>
+                        <div>100<span class="busd">BUSD</span>gets you:</div>
                         <div>
                           <i class="bi-minecart"></i>
                           Farmers:
@@ -348,7 +352,7 @@
 			  </span>	
 			  <span class="usd">
 				max<span class="busd" id="max-deposit">0</span>)</span>
-			  <input class="form-control" id="busd-spend" name="buy-miners" onChange="updateBuyPrice()" step="100" type="number" value="500">
+			  <input class="form-control" id="busd-spend" name="buy-miners" onChange="updateBuyPrice()" step="100" type="number" value="100">
 			</strong>
 			<button class="btn glow-on-hover" id="buy-eggs-btn" onclick="buyEggs()" role="button" disabled style="margin-top: 5px;">
 			  Hire
@@ -450,7 +454,7 @@
 	<section id="faq" class="bg faq section-bg">
       <div class="container" data-aos="fade-up">
 	      <br>
-	      <h4 style="color: #fff; justify-content: center; font-family: cursive;"><div class="busd"><u>Frequently Asked Questions</u></div></h4>
+	      <h4 style="color: #fff; justify-content: center; font-family: cursive;"><div class="busd">Frequently Asked Questions</div></h4>
 	<div class="faq-list">
           <ul>
             <li>
@@ -504,13 +508,13 @@
                 This is to prevent whales from letting their rewards accumulate for a long time, 
                 and removes the false impression the contract value is going up when most of it is rewards the whale is waiting to withdraw at once.
                 <p>
-                The withhdraw cooldown time is the amount of time one has to wait before they can make another withdrawal. 
+                The withdraw cooldown time is the amount of time one has to wait before they can make another withdrawal. 
                 This also prevents the contract balance from decreasing in value too fast. 
                 If the team decides it's necessary to protect the contract balance, 
                 this time period can be adjusted to slow down the rate of withdrawals, 
                 but it can only be set to a value less than or equal to 24 hours (per contract rules).
                 <p>
-				The compound count is the number of times the user has compounded. By default, the required compound count by the platform is 5, meaning the user will have to compound 5 times every 12 hours before they can withdraw without the feedback tax of 60%. This feature in essense will ensure the longevity and stability of the project.
+		The compound count is the number of times the user has compounded. By default, the required compound count by the platform is 5, meaning the user will have to compound 5 times(compound once every 12 hours) before they can withdraw without the feedback tax of 60%. This feature in essense will ensure the longevity and stability of the project.
                 <p>
                 To reward users who compound, 
                 there is a bonus when you re-hire your daily crops earnings instead of selling them. 
@@ -552,6 +556,26 @@
 			    only the value they provide can be sold. As the players of the game as a whole compound their earnings and make new deposits, 
 			    the game efficiency rate will stay relatively constant, but the moment players start to sell more than they are compounding, 
 			    the efficiency rate will begin to drop as to preserve the TVL and longevity of the game.
+                </p>
+              </div>
+            </li>
+			<li>
+              <i class="bx bx-help-circle icon-help"></i>
+              <a
+                data-bs-toggle="collapse"
+                class="collapse"
+                data-bs-target="#faq-list-4"
+                >What is the recommended strategy?
+                <i class="bx bx-chevron-down icon-show"></i
+                ><i class="bx bx-chevron-up icon-close"></i
+              ></a>
+              <div
+                id="faq-list-4"
+                class="collapse show"
+                data-bs-parent=".faq-list">
+                <p>
+				The best strategy that the team can recommend is to re-hire/compound for 6 days and harvest 1 day a week. 
+				This will increase the users investment at the same time increasing the daily yield earnings. This strategy has already been tried and tested by several project and is proven effective both for the short and long term.
                 </p>
               </div>
             </li>
