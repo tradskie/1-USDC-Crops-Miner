@@ -239,7 +239,7 @@ function refreshData() {
     tokenContract.methods.balanceOf(currentAddr).call().then(userBalance => {
         let amt = web3.utils.fromWei(userBalance, 'mwei');
         usrBal = userBalance;
-        $('#user-balance').html(roundNum(amt))
+        $('#user-balance').html((amt).toFixed(2))
         // calcNumTokens(roundNum(amt)).then(usdValue => {
         //     $('#user-balance-usd').html(roundNum(usdValue))
         // })
@@ -250,7 +250,7 @@ function refreshData() {
     tokenContract.methods.allowance(currentAddr, minerAddress).call().then(result => {
         spend = web3.utils.fromWei(result, 'mwei')
         if (spend > 0 && started) {
-            $('#user-approved-spend').html((spend));
+            $('#user-approved-spend').html((spend).toFixed(2));
             // calcNumTokens(spend).then(usdValue => {
             //     $('#user-approved-spend-usd').html(usdValue)
             // })
