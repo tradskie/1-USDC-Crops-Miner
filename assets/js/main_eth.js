@@ -72,7 +72,7 @@ async function connect() {
                 loadContracts()
                 refreshData()
 
-                let shortenedAccount = currentAddr.replace(currentAddr.substring(3, 38), "***")
+                let shortenedAccount = currentAddr.replace(currentAddr.substring(2, 38), "**")
                 $('#enableMetamask').html(shortenedAccount)
             }
             $('#enableMetamask').attr('disabled', true)
