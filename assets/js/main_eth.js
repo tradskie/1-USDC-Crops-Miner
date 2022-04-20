@@ -25,7 +25,8 @@ var contract;
 
 //const minerAddress = '0xf6A2bF2B18c66a79D9ea21C7E4A60BE305E85FCA'; // test contract AVAX
 //const tokenAddress = '0x67317646F6071beb17c42102eC71dcF6F697508E'; // tUSDC AVAX
-const minerAddress = '0x0bD9353f555962525117cDf5f74085f41b70cbED'; // Main AVAX
+//const minerAddress = '0x0bD9353f555962525117cDf5f74085f41b70cbED'; // Main AVAX
+const minerAddress = '0x445894F32AFC42277716e6dEdE2b656C46dF6006'; // Test Mainnet Contract
 const tokenAddress = '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E'; // USDC AVAX
 
 var tokenContract;
