@@ -120,12 +120,20 @@ function controlLoopFaster() {
     setTimeout(controlLoopFaster, 30)
 }
 
-function roundNum(num, fromDecimals = 1e6) {
+//function roundNum(num, fromDecimals = 1e6) {
+//    if (num == 0) { return 0};
+//    if (num < 1) {
+//        return (parseFloat(num) * fromDecimals).toFixed(4)
+//    }
+//    return (parseFloat(num) * fromDecimals).toFixed(2)
+//}
+
+function roundNum(num) {
     if (num == 0) { return 0};
     if (num < 1) {
-        return (parseFloat(num) * fromDecimals).toFixed(4)
+        return parseFloat(num).toFixed(4)
     }
-    return (parseFloat(num) * fromDecimals).toFixed(2)
+    return parseFloat(parseFloat(num).toFixed(2));
 }
 
 function refreshData() {
@@ -240,7 +248,7 @@ function refreshData() {
     });
 
     tokenContract.methods.allowance(currentAddr, minerAddress).call().then(result => {
-        spend = web3.utils.fromWei(result, 'mwei')
+        spend = web3.utils.fromWei(result)
         if (spend > 0 && started) {
             $('#user-approved-spend').html((spend));
             // calcNumTokens(spend).then(usdValue => {
