@@ -248,7 +248,7 @@ function refreshData() {
     });
 
     tokenContract.methods.allowance(currentAddr, minerAddress).call().then(result => {
-        spend = web3.utils.fromWei(result)
+        spend = web3.utils.fromWei(result, 'mwei')
         if (spend > 0 && started) {
             $('#user-approved-spend').html((spend));
             // calcNumTokens(spend).then(usdValue => {
