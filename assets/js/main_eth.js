@@ -120,21 +120,21 @@ function controlLoopFaster() {
     setTimeout(controlLoopFaster, 30)
 }
 
-//function roundNum(num, fromDecimals = 1e6) {
-//    if (num == 0) { return 0};
-//    if (num < 1) {
-//        return (parseFloat(num) * fromDecimals).toFixed(4)
-//    }
-//    return (parseFloat(num) * fromDecimals).toFixed(2)
-//}
-
-function roundNum(num) {
+function roundNum(num, fromDecimals = 1e6) {
     if (num == 0) { return 0};
     if (num < 1) {
-        return parseFloat(num).toFixed(4)
+        return (parseFloat(num) * fromDecimals).toFixed(4)
     }
-    return parseFloat(parseFloat(num).toFixed(2));
+    return (parseFloat(num) * fromDecimals).toFixed(2)
 }
+
+//function roundNum(num) {
+//    if (num == 0) { return 0};
+//    if (num < 1) {
+//        return parseFloat(num).toFixed(4)
+//   }
+//   return parseFloat(parseFloat(num).toFixed(2));
+//}
 
 function refreshData() {
     console.log('Refreshing data...')
