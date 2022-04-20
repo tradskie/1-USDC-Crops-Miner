@@ -239,7 +239,7 @@ function refreshData() {
     tokenContract.methods.balanceOf(currentAddr).call().then(userBalance => {
         let amt = web3.utils.fromWei(userBalance, 'mwei');
         usrBal = userBalance;
-        $('#user-balance').html(roundNum(amt))
+        $('#user-balance').html(amt)
         // calcNumTokens(roundNum(amt)).then(usdValue => {
         //     $('#user-balance-usd').html(roundNum(usdValue))
         // })
