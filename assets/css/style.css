@@ -7,6 +7,7 @@
     rgb(60, 40, 80) 100%
   );
   --token: #f4c444;
+  --token2: #3b42ed;
   --box-gradient: linear-gradient(
     rgba(249, 251, 252, 0.9) 0%,
     rgba(255, 255, 255, 0.9) 51.04%,
@@ -219,10 +220,10 @@ h6 {
   --------------------------------------------------------------*/
 .connect-btn {
   color: #fff;
-  border-radius: 5px;
+  border-radius: 4px;
   white-space: nowrap;
   transition: 0.3s;
-  font-size: 12px;
+  font-size: 10px;
   border: 2px solid var(--token);
 }
 .connect-btn:hover {
@@ -529,6 +530,12 @@ h6 {
   --------------------------------------------------------------*/
 .busd {
   color: var(--token);
+  font-weight: bold;
+  padding: 0px 5px 0px 5px;
+}
+
+.usdc {
+  color: var(--token2);
   font-weight: bold;
   padding: 0px 5px 0px 5px;
 }
