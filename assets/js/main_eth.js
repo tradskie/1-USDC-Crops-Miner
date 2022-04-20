@@ -23,8 +23,8 @@ var withdrawCooldown=0;
 
 var contract;
 
-const minerAddress = '0x367102c9A403f7EB5594fbb29cdFd58296881343'; //mainnet contract
-const tokenAddress = '0xF7089180b0cCEc9881bC31084143556f41640416'; //mainnet USDC.e
+const minerAddress = '0xf6A2bF2B18c66a79D9ea21C7E4A60BE305E85FCA'; // test contract AVAX
+const tokenAddress = '0x67317646F6071beb17c42102eC71dcF6F697508E'; // tUSDC AVAX
 
 var tokenContract;
 var started = true;
@@ -203,14 +203,14 @@ function refreshData() {
 
     contract.methods.WALLET_DEPOSIT_LIMIT().call().then(busd => {
         maxDeposit = busd;
-        $("#max-deposit").html(`${readableBUSD(busd, 2, 1e6)} USDC.e`)
+        $("#max-deposit").html(`${readableBUSD(busd, 2, 1e6)} USDC`)
     }).catch((err) => {
         console.log('WALLET_DEPOSIT_LIMIT', err);
     });
 	
 	contract.methods.MIN_INVEST_LIMIT().call().then(busd => {
         minDeposit = busd;
-        $("#min-deposit").html(`${readableBUSD(busd, 2, 1e6)} USDC.e`)
+        $("#min-deposit").html(`${readableBUSD(busd, 2, 1e6)} USDC`)
     }).catch((err) => {
         console.log('MIN_INVEST_LIMIT', err);
     });
@@ -630,23 +630,23 @@ function hireFarmers(){
 	
     var amt = web3.utils.toWei(busd, 'mwei');
 	if(+amt < +minDeposit) {
-		alert(`you cannot deposit less than ${readableBUSD(minDeposit, 2, 1e6)} USDC.e`);
+		alert(`you cannot deposit less than ${readableBUSD(minDeposit, 2, 1e6)} USDC`);
         return
     }
 	
 	var amt = web3.utils.toWei(busd, 'mwei');
 	if(+amt + +totalDeposits > +maxDeposit) {
-		alert(`you cannot deposit more than ${readableBUSD(maxDeposit, 2, 1e6)} USDC.e`);
+		alert(`you cannot deposit more than ${readableBUSD(maxDeposit, 2, 1e6)} USDC`);
         return
     }
 	
     if(+amt > usrBal) {
-		alert("you do not have " + busd + " USDC.e in your wallet");
+		alert("you do not have " + busd + " USDC in your wallet");
         return
     }
     if (+spend < +busd) {
         var amtToSpend = busd - spend;
-        alert("you first need to approve " + amtToSpend + " USDC.e before depositing");
+        alert("you first need to approve " + amtToSpend + " USDC before depositing");
         return
     }
 
@@ -712,7 +712,7 @@ function httpGetAsync(theUrl, callback) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.reUSDC.enseText);
+            callback(xmlHttp.responseText);
     }
     xmlHttp.open("GET", theUrl, true);
     xmlHttp.send(null);
