@@ -219,10 +219,10 @@ h6 {
   --------------------------------------------------------------*/
 .connect-btn {
   color: #fff;
-  border-radius: 6px;
+  border-radius: 5px;
   white-space: nowrap;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 12px;
   border: 2px solid var(--token);
 }
 .connect-btn:hover {
@@ -558,7 +558,7 @@ h6 {
 #hero h1 {
   margin: 0;
   padding-bottom: 15px;
-  font-size: 36px;
+  font-size: 30px;
   letter-spacing: 1px;
   font-weight: 700;
   line-height: 50px;
