@@ -1748,7 +1748,7 @@ section {
   z-index: 0;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 1000;
 }
 
 .glow-on-hover:before {
