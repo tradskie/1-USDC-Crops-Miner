@@ -336,7 +336,7 @@ function refreshData() {
 	$("#compound-count").html(`${dailyCompoundBonus} Times`);
         if (dailyCompoundBonus > 0) {
             extraPercent += dailyCompoundBonus * compoundPercent;
-            $("#compound-bonus").html(`+${extraPercent}% bonus`);
+            $("#compound-bonus").html(`+${extraPercent}%`);
         } else {
             $("#reinvest").text("Hire More Farmers");
         }
