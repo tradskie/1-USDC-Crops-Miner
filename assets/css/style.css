@@ -6,7 +6,8 @@
     var(--primary) 0%,
     rgb(60, 40, 80) 100%
   );
-  --token: #2962ff;
+  --token: #214ec9;
+  --token2: #3b42ed;
   --box-gradient: linear-gradient(
     rgba(249, 251, 252, 0.9) 0%,
     rgba(255, 255, 255, 0.9) 51.04%,
@@ -41,7 +42,7 @@ body {
   background-color: rgb(33, 36, 41) !important;
   /*  background: var(--radial-gradient); */
   color: #fff;
-  background: url("../img/USDCBG.png");
+  background: url("../img/cropsfarmer2.PNG");
   background-repeat: no-repeat !important;
   background-size: cover;
   background-attachment: fixed;
@@ -102,8 +103,8 @@ h6 {
   width: 40px;
   height: 40px;
   border-radius: 4px;
-  border: 1px white solid;
   transition: all 0.4s;
+  border: 1px white solid;
 }
 .back-to-top i {
   font-size: 28px;
@@ -189,7 +190,7 @@ h6 {
   background: rgba(0, 0, 0, 0.3);
 }
 #header .logo {
-  font-size: 19px;
+  font-size: 17px;
   margin: 0;
   padding: 0;
   line-height: 1;
@@ -200,7 +201,7 @@ h6 {
   color: #fff;
 }
 #header .logo a span {
-  color: #2e9ace;
+  color: var(--token);
 }
 
 #header .logo img {
@@ -220,10 +221,10 @@ h6 {
   --------------------------------------------------------------*/
 .connect-btn {
   color: #fff;
-  border-radius: 6px;
+  border-radius: 4px;
   white-space: nowrap;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 10px;
   border: 2px solid var(--token);
 }
 .connect-btn:hover {
@@ -294,6 +295,24 @@ h6 {
 .navbar .mine:hover {
   color: #000;
   background-color: var(--token);
+}
+
+.navbar .bnb-miner {
+  width: auto;
+  background-color: #877b12;
+  border-radius: 12px;
+  padding: 10px;
+  font-weight: bold;
+  border: 2px solid #000;
+  box-shadow: 0px 5px 20px rgb(255 255 255 / 30%),
+    inset 0px 0px 0px rgb(0 0 0 / 32%);
+  max-width: 200px;
+  margin: 20px auto 20px auto;
+}
+
+#navbar .bnb-miner:hover {
+  color: #fff;
+  background-color: #e0cd1f;
 }
 
 .other-miner {
@@ -516,6 +535,12 @@ h6 {
   padding: 0px 5px 0px 5px;
 }
 
+.usdc {
+  color: var(--token2);
+  font-weight: bold;
+  padding: 0px 5px 0px 5px;
+}
+
 #hero {
   background-repeat: no-repeat;
   background-size: cover;
@@ -541,7 +566,7 @@ h6 {
 #hero h1 {
   margin: 0;
   padding-bottom: 15px;
-  font-size: 36px;
+  font-size: 30px;
   letter-spacing: 1px;
   font-weight: 700;
   line-height: 50px;
@@ -551,6 +576,13 @@ h6 {
 #hero h2 {
   font-weight: 600;
   font-size: 17px;
+  line-height: 20px;
+  padding-bottom: 15px;
+}
+
+#hero h3 {
+  font-weight: 600;
+  font-size: 20px;
   line-height: 20px;
   padding-bottom: 15px;
 }
@@ -574,7 +606,7 @@ h6 {
   padding: 200px;
   width: 750px;
   height: 629px;
-  margin: 10px;
+  margin: 100px;
   position: relative;
   overflow: hidden;
   border-radius: 5px;
@@ -633,13 +665,13 @@ fff .content-box {
 }
 
 #main .container {
-  background: #2962ff;
+  background: #214ec9;
   max-width: 1200px;
   margin: 0 auto;
-  border-radius: 18px;
+  border-radius: 15px;
   border-style: solid;
-  border-width: 2px;
-  border-color: #ffffff;
+  border-width: 7px;
+  border-color: #2962ff;
 }
 
 #main .content-box {
@@ -674,7 +706,7 @@ fff .content-box {
 #lottery .info-container {
   color: rgba(0, 0, 0, 0.8);
   background: #fafffe;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid #000;
   border-radius: 10px;
   width: auto;
   padding: 20px;
@@ -722,7 +754,7 @@ fff .content-box {
   color: white;
   background: rgb(39 34 24);
   backdrop-filter: blur(8px);
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid #000000;
   border-radius: 18px;
   width: auto;
   min-width: 215px;
@@ -870,7 +902,7 @@ fff .content-box {
 }
 
 #hero .busd {
-  color: var(--token);
+  color: var(--primary);
   font-weight: bold;
 }
 
@@ -1175,7 +1207,7 @@ section {
   color: white;
   background: rgb(39 34 24);
   backdrop-filter: blur(8px);
-  border: 2px solid rgb(255, 255, 255);
+  border: 2px solid #000000;
   border-radius: 18px;
   height: 100%;
   font-size: 16px;
@@ -1500,7 +1532,7 @@ section {
   # Footer
   --------------------------------------------------------------*/
 #footer {
-  background: #2962ff;
+  background: #214ec9;
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
@@ -1703,7 +1735,7 @@ section {
   height: 50px;
   border: none;
   outline: none;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   background: #2962ff;
   cursor: pointer;
   position: relative;
@@ -1745,7 +1777,7 @@ section {
 }
 
 .glow-on-hover:active {
-  color: rgb(255, 255, 255);
+  color: #000;
 }
 
 .glow-on-hover:active:after {
@@ -1762,6 +1794,7 @@ section {
   position: absolute;
   width: 100%;
   height: 100%;
+  /* background: #f4c444; */
   left: 0;
   top: 0;
   border-radius: 10px;
@@ -1777,10 +1810,4 @@ section {
   100% {
     background-position: 0 0;
   }
-}
-
-.HeaderImage {
-  display: flex;
-  margin: auto;
-  padding-top: 100px;
 }
