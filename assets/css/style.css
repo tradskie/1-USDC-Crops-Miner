@@ -535,6 +535,12 @@ h6 {
   padding: 0px 5px 0px 5px;
 }
 
+.busd2 {
+  color: var(--token2);
+  font-weight: bold;
+  padding: 0px 5px 0px 5px;
+}
+
 .usdc {
   color: var(--token2);
   font-weight: bold;
