@@ -1697,7 +1697,7 @@ section {
   position: absolute;
   right: 0;
   left: 20px;
-  color: var(--token);
+  color: #ffc451;
 }
 .faq .faq-list .icon-show,
 .faq .faq-list .icon-close {
