@@ -530,7 +530,7 @@ h6 {
 
   --------------------------------------------------------------*/
 .busd {
-  color: var(--primary);
+  color: rgb(255, 255, 255);
   font-weight: bold;
   padding: 0px 5px 0px 5px;
 }
