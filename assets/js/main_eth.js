@@ -205,14 +205,14 @@ function refreshData() {
 
     contract.methods.WALLET_DEPOSIT_LIMIT().call().then(busd => {
         maxDeposit = busd;
-        $("#max-deposit").html(`${readableBUSD(busd, 2, 1e6)} USDC`)
+        $("#max-deposit").html(`${readableBUSD(busd, 2, 1e6)}`)
     }).catch((err) => {
         console.log('WALLET_DEPOSIT_LIMIT', err);
     });
 	
 	contract.methods.MIN_INVEST_LIMIT().call().then(busd => {
         minDeposit = busd;
-        $("#min-deposit").html(`${readableBUSD(busd, 2, 1e6)} USDC`)
+        $("#min-deposit").html(`${readableBUSD(busd, 2, 1e6)}`)
     }).catch((err) => {
         console.log('MIN_INVEST_LIMIT', err);
     });
