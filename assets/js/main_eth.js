@@ -399,7 +399,7 @@ function refreshData() {
             });
         }
 		//if dailyCompoundBonus < 5
-        if (dailyCompoundBonus < compoundCount) {
+         if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
             contract.methods.WITHDRAWAL_TAX().call().then(tax => {
                 $("#withdraw-tax").html(`(-${tax/10}% tax)`)
 		console.log('dailyCompoundBonus < compoundCount = true');  
