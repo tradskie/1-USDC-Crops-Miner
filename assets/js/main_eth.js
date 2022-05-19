@@ -41,7 +41,7 @@ const minerAbi = [{"inputs":[{"internalType":"address","name":"_dev1","type":"ad
 // ------ contract calls
 function loadContracts() {
     console.log('Loading contracts...')
-    web3 = window.web3
+    web3 = window.web3	
     contract = new web3.eth.Contract(minerAbi, minerAddress);
     tokenContract = new web3.eth.Contract(tokenAbi, tokenAddress);
     console.log('Done loading contracts.')
@@ -52,6 +52,11 @@ function myReferralLink(address) {
     prldoc.textContent = window.location.origin + "?ref=" + address
     var copyText = document.getElementById("reflink");
     copyText.value = prldoc.textContent
+}
+
+async function myConnect(){
+    var element = document.getElementById("dotting");
+    element.classList.toggle("dot");
 }
 
 async function connect() {
@@ -65,18 +70,7 @@ async function connect() {
             console.log('Please connect to MetaMask.');
             $('#enableMetamask').html('Connect')
         } else if (accounts[0] !== currentAddr) {
-            currentAddr = accounts[0];
-            if (currentAddr !== null) {
-                myReferralLink(currentAddr)
-                console.log('Wallet connected = '+ currentAddr)
-
-                loadContracts()
-                refreshData()
-
-                let shortenedAccount = currentAddr.replace(currentAddr.substring(2, 40), "**")
-                $('#enableMetamask').html(shortenedAccount)
-            }
-            $('#enableMetamask').attr('disabled', true)
+            loginActions(accounts);
         }
     } catch (err) {
         if (err.code === 4001) {
@@ -88,6 +82,21 @@ async function connect() {
         }
         $('#enableMetamask').attr('disabled', false)
     }
+}
+
+function loginActions(accounts) {
+    currentAddr = accounts[0];
+    if (currentAddr !== null) {
+        myReferralLink(currentAddr);
+        console.log('Wallet connected = ' + currentAddr);
+
+        loadContracts();
+        refreshData();
+
+        let shortenedAccount = currentAddr.replace(currentAddr.substring(3, 39), "***");
+        $('#enableMetamask').html(shortenedAccount);
+    }
+    $('#enableMetamask').attr('disabled', true);
 }
 
 async function loadWeb3() {
@@ -132,22 +141,13 @@ function roundNum(num, fromDecimals = 1e6) {
     return (parseFloat(num) * fromDecimals).toFixed(2)
 }
 
-//function roundNum(num) {
-//    if (num == 0) { return 0};
-//    if (num < 1) {
-//        return parseFloat(num).toFixed(4)
-//   }
-//   return parseFloat(parseFloat(num).toFixed(2));
-//}
-
 function refreshData() {
     console.log('Refreshing data...')
-    // try {
-    //     tokenPrice(function(busdPrice){
-    //         var priceJson = JSON.parse(busdPrice)
-    //         priceInUSD = +priceJson['binancecoin']['usd'];
-    //     });
-    // } catch { priceInUSD = 0; }
+    if(!contract || !contract.methods){
+        console.log('contract is not yet loaded')
+        loadContracts()
+        // return;
+    }
 
     contract.methods.EGGS_TO_HIRE_1MINERS().call().then(eggs => {
         eggstohatch1 = eggs
@@ -168,14 +168,14 @@ function refreshData() {
 
     contract.methods.CUTOFF_STEP().call().then(cutoff => {
         cutoffStep = cutoff;
-		$("#cut-off-step").html(`${cutoffStep / 3600}`)
+        $("#cut-off-step").html(`${cutoffStep / 3600}`)
     }).catch((err) => {
         console.log('CUTOFF_STEP', err);
     })
 
     contract.methods.WITHDRAW_COOLDOWN().call().then(cooldown => {
         withdrawCooldown = cooldown;
-		$("#withdraw-cooldown").html(`${withdrawCooldown / 3600}`)
+	$("#withdraw-cooldown").html(`${withdrawCooldown / 3600}`)
     }).catch((err) => {
         console.log('WITHDRAW_COOLDOWN', err);
     })
@@ -199,7 +199,7 @@ function refreshData() {
 	contract.methods.COMPOUND_FOR_NO_TAX_WITHDRAWAL().call().then(r => {
         compoundCount = r;
         var maxCompoundForNoTax = compoundCount;
-	console.log('maxCompoundForNoTax = ' + maxCompoundForNoTax)
+        console.log('maxCompoundForNoTax = ' + maxCompoundForNoTax)
         $("#no-tax-compound-count").html(`${maxCompoundForNoTax}`)
     }).catch((err) => {
         console.log('COMPOUND_FOR_NO_TAX_WITHDRAWAL', err);
@@ -210,7 +210,7 @@ function refreshData() {
         $("#max-deposit").html(`${readableBUSD(busd, 2, 1e6)}`)
     }).catch((err) => {
         console.log('WALLET_DEPOSIT_LIMIT', err);
-    });
+    });	
 	
 	contract.methods.MIN_INVEST_LIMIT().call().then(busd => {
         minDeposit = busd;
@@ -221,7 +221,7 @@ function refreshData() {
 
     contract.methods.COMPOUND_STEP().call().then(step => {
         compoundStep = step;
-		$("#compound-hours").html(`${compoundStep / 3600}`)
+    $("#compound-hours").html(`${compoundStep / 3600}`)
     }).catch((err) => {
         console.log(err);
     });
@@ -297,123 +297,139 @@ function refreshData() {
         });
     }
 
-    // web3.eth.getBalance(currentAddr).then(userBalance => {
-    //     usrBal = userBalance;
-    //     var amt = web3.utils.fromWei(userBalance);
-    //     $("#user-balance").html(roundNum(amt));
-    //     var usd = Number(priceInUSD*amt).toFixed(2);
-    //     $("#user-balance-usd").html(usd)
-    // }).catch((err) => {
-    //     console.log(err);
-    // });
-
-    contract.methods.getUserInfo(currentAddr).call().then(user => {
-        var initialDeposit = user._initialDeposit;
-        var userDeposit = user._userDeposit;
-        var miners = user._miners;
-        var totalWithdrawn = user._totalWithdrawn;
-        var lastHatch = user._lastHatch;
-        var referrals = user._referrals;
-        var referralEggRewards = user._referralEggRewards;
-        var dailyCompoundBonus = user._dailyCompoundBonus;
-        var withdrawCount = user._withdrawCount;
-        var lastWithdrawTime = user._lastWithdrawTime;
-
-        console.log('withdraw count = ' + withdrawCount)
-        console.log('last withdraw time = ' + lastWithdrawTime)
-
-        var now = new Date().getTime() / 1000;
-
-        var diff = (+lastHatch + +compoundStep) - now;
-        if (diff > 0) {
-            setCompoundTimer(lastHatch);
-        } else {
-            $(".compound-timer").text("00:00:00");
-            $('#reinvest').attr('disabled', false)
+    if(!currentAddr) {
+        console.log('check if user is logged in');
+        web3.eth.getAccounts(function(err, accounts){
+            if (err != null) {
+                console.error("An error occurred: "+err);
         }
-        var extraPercent = 0;
-        console.log('dailyCompoundBonus = ' + dailyCompoundBonus)
-	$("#compound-count").html(`${dailyCompoundBonus} Times`);
-        if (dailyCompoundBonus > 0) {
-            extraPercent += dailyCompoundBonus * compoundPercent;
-            $("#compound-bonus").html(`+${extraPercent}%`);
-        } else {
-            $("#reinvest").text("Hire More Farmers");
-        }
+            else if (accounts.length == 0) {
+                console.log("User is not logged in to MetaMask");
+            }
+            else {console.log("User is logged in to MetaMask");
+            loginActions(accounts);}
+        });
+        return;
+    } else {
+        web3.eth.getBalance(currentAddr).then(userBalance => {
+            usrBal = userBalance;
+            var amt = web3.utils.fromWei(userBalance);
+            $("#user-balance").html(roundNum(amt));
+            //var usd = Number(priceInUSD*amt).toFixed(2);
+            //$("#user-balance-usd").html(usd)
+        }).catch((err) => {
+            console.log(err);
+        });
+    
+        contract.methods.getUserInfo(currentAddr).call().then(user => {
+            var initialDeposit = user._initialDeposit;
+            var userDeposit = user._userDeposit;
+            var miners = user._miners;
+            var totalWithdrawn = user._totalWithdrawn;
+            var lastHatch = user._lastHatch;
+            var referrals = user._referrals;
+            var referralEggRewards = user._referralEggRewards;
+            var dailyCompoundBonus = user._dailyCompoundBonus;
+            var withdrawCount = user._withdrawCount;
+            var lastWithdrawTime = user._lastWithdrawTime;
 
-        var cutOffDiff = (+lastHatch + +cutoffStep) - now;
-        if (cutOffDiff > 0) {
-            setCutoffTimer(lastHatch)
-        } else {
-            $("#claim-timer").html("00:00:00")
-        }
+            console.log('withdraw count = ' + withdrawCount)
+            console.log('last withdraw time = ' + lastWithdrawTime)
+    
+            var now = new Date().getTime() / 1000;
+    
+            var diff = (+lastHatch + +compoundStep) - now;
+            if (diff > 0) {
+                setCompoundTimer(lastHatch);
+            } else {
+                $(".compound-timer").text("00:00:00");
+                $('#reinvest').attr('disabled', false)
+            }
+            var extraPercent = 0;
+            console.log('dailyCompoundBonus = ' + dailyCompoundBonus)
+            $("#compound-count").html(`${dailyCompoundBonus} Times`);
+                if (dailyCompoundBonus > 0) {
+                    extraPercent += dailyCompoundBonus * compoundPercent;
+                    $("#compound-bonus").html(`+${extraPercent}%`);
+                } else {
+                    $("#reinvest").text("Hire More Farmers");
+                }
+    
+            var cutOffDiff = (+lastHatch + +cutoffStep) - now;
+            if (cutOffDiff > 0) {
+                setCutoffTimer(lastHatch)
+            } else {
+                $("#claim-timer").html("00:00:00")
+            }
+    
+            var coolDownDiff = (+lastHatch + +withdrawCooldown) - now;
+            if (coolDownDiff > 0) {
+                setCooldownTimer(coolDownDiff)
+            } else {
+                $("#cooldown-timer").html("");
+                $("#withdraw").attr('disabled', false);
+            }
+    
+            if (miners > 0) {
+                $("#your-miners").html(miners);
+                contract.methods.getAvailableEarnings(currentAddr).call().then(function (earnings) {
+                    var busdMined = readableBUSD(earnings, 4, 1e6)
+                    $("#mined").html(busdMined);
+                    // var minedUsd = Number(priceInUSD*busdMined).toFixed(2);
+                    // $('#mined-usd').html(minedUsd)
+                }).catch((err) => {
+                    console.log('getAvailableEarnings', err);
+                    throw err;
+                });
+            } else {
+                $("#mined").html(0);
+            }
 
-        var coolDownDiff = (+lastHatch + +withdrawCooldown) - now;
-        if (coolDownDiff > 0) {
-            setCooldownTimer(coolDownDiff)
-        } else {
-            $("#cooldown-timer").html("");
-            $("#withdraw").attr('disabled', false);
-        }
+            if (referralEggRewards > 0) {
+                var refBUSD = readableBUSD(referralEggRewards, 2, 1e6);
+                $("#ref-rewards-busd").html(refBUSD);
+                // var refUSD = Number(priceInUSD*refBUSD).toFixed(2);
+                // $('#ref-rewards-usd').html(refUSD)
+                $('#ref-count').html(referrals);
+            } else {
+                $("#ref-rewards").html("0".concat(' '.concat('Miners')));
+            }
 
-        if (miners > 0) {
-            $("#your-miners").html(miners);
-            contract.methods.getAvailableEarnings(currentAddr).call().then(function (earnings) {
-                var busdMined = readableBUSD(earnings, 4, 1e6)
-                $("#mined").html(busdMined);
-                // var minedUsd = Number(priceInUSD*busdMined).toFixed(2);
-                // $('#mined-usd').html(minedUsd)
-            }).catch((err) => {
-                console.log('getAvailableEarnings', err);
-                throw err;
-            });
-        } else {
-            $("#mined").html(0);
-        }
-
-        if (referralEggRewards > 0) {
-            var refBUSD = readableBUSD(referralEggRewards, 2, 1e6);
-            $("#ref-rewards-busd").html(refBUSD);
-            // var refUSD = Number(priceInUSD*refBUSD).toFixed(2);
-            // $('#ref-rewards-usd').html(refUSD)
-            $('#ref-count').html(referrals);
-        } else {
-            $("#ref-rewards").html("0".concat(' '.concat('Miners')));
-        }
-
-        setInitialDeposit(initialDeposit);
-        setTotalDeposit(userDeposit);
-        setTotalWithdrawn(totalWithdrawn);
-
-
-        if (miners > 0) {
+            setInitialDeposit(initialDeposit);
+            setTotalDeposit(userDeposit);
+            setTotalWithdrawn(totalWithdrawn);
+    
+    
+            if (miners > 0) {
             var eggsPerDay = 24*60*60 * miners ;
             contract.methods.calculateEggSellForYield(eggsPerDay, web3.utils.toWei('100', 'mwei')).call().then(earnings => {
                 var eggsBUSD = readableBUSD(earnings, 4, 1e6)
                 $("#eggs-per-day").html(eggsBUSD);
                 // var eggsUSD = Number(priceInUSD*eggsBUSD).toFixed(2);
                 // $('#eggs-per-day-usd').html(eggsUSD)
-            }).catch((err) => {
-                console.log('calculateEggSellForYield', err);
-                throw err;
-            });
-        }
-		//if dailyCompoundBonus < 5
-         if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
-            contract.methods.WITHDRAWAL_TAX().call().then(tax => {
-                $("#withdraw-tax").html(`(-${tax/10}% tax)`)
-		console.log('dailyCompoundBonus < compoundCount = true');  
-            }).catch((err) => {
-                console.log('WITHDRAWAL_TAX', err);
-                throw err;
-            });
-        } else {
-            $('#withdraw-tax').attr('hidden', true)
-			console.log('dailyCompoundBonus < compoundCount = false'); 
-        }
-    }).catch((err) => {
-        console.log('getUserInfo', err);
-    });
+                }).catch((err) => {
+                    console.log('calculateEggSellForYield', err);
+                    throw err;
+                });
+            }
+		    //if dailyCompoundBonus < 5
+            if (parseInt(dailyCompoundBonus) < parseInt(compoundCount)) {
+                contract.methods.WITHDRAWAL_TAX().call().then(tax => {
+                    $("#withdraw-tax").html(`(-${tax/10}% tax)`)
+            console.log('dailyCompoundBonus < compoundCount = true');  
+                }).catch((err) => {
+                    console.log('WITHDRAWAL_TAX', err);
+                    throw err;
+                });
+            } else {
+                $('#withdraw-tax').attr('hidden', true)
+                console.log('dailyCompoundBonus < compoundCount = false'); 
+            }
+        }).catch((err) => {
+            console.log('getUserInfo', err);
+        });
+
+    }
 
     updateBuyPrice();
     console.log('Done refreshing data...')
